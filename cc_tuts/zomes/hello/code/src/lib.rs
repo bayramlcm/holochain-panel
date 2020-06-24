@@ -31,27 +31,27 @@ mod users {
     }
 
     #[zome_fn("hc_public")]
-    fn create_user(user: UserEntry) -> ZomeApiResult<User> {
-        user::handlers::create_user(user)
+    fn user_add(user: UserEntry) -> ZomeApiResult<User> {
+        user::handlers::user_add(user)
     }
 
     #[zome_fn("hc_public")]
-    fn get_user(id: Address) -> ZomeApiResult<User> {
-        user::handlers::get_user(id)
+    fn user_get(id: Address) -> ZomeApiResult<User> {
+        user::handlers::user_get(id)
     }
 
     #[zome_fn("hc_public")]
-    fn update_user(id: Address, user_input: UserEntry) -> ZomeApiResult<User> {
-        user::handlers::update_user(id, user_input)
+    fn user_update(id: Address, user_input: UserEntry) -> ZomeApiResult<User> {
+        user::handlers::user_update(id, user_input)
     }
 
     #[zome_fn("hc_public")]
-    fn remove_user(id: Address) -> ZomeApiResult<Address> {
-        user::handlers::remove_user(id)
+    fn user_delete(id: Address) -> ZomeApiResult<Address> {
+        user::handlers::user_delete(id)
     }
 
     #[zome_fn("hc_public")]
-    fn get_all_user() -> ZomeApiResult<Vec<User>> {
-        user::handlers::get_all_user()
+    fn user_get_all() -> ZomeApiResult<Vec<User>> {
+        user::handlers::user_get_all()
     }
 }
