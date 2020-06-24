@@ -31,8 +31,8 @@ mod users {
     }
 
     #[zome_fn("hc_public")]
-    fn create_user(user_input: UserEntry) -> ZomeApiResult<User> {
-        user::handlers::create_user(user_input)
+    fn create_user(user: UserEntry) -> ZomeApiResult<User> {
+        user::handlers::create_user(user)
     }
 
     #[zome_fn("hc_public")]
