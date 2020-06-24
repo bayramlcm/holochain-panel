@@ -1,7 +1,5 @@
 bridges = []
 persistence_dir = ''
-ui_bundles = []
-ui_interfaces = []
 
 [[agents]]
 id = 'hc-run-agent'
@@ -11,28 +9,42 @@ public_address = 'HcScjN8wBwrn3tuyg89aab3a69xsIgdzmX5P9537BqQZ5A7TEZu7qCY4Xzzjhm
 test_agent = true
 
 [[dnas]]
-file = '/Users/bayramlcm/Documents/projects/blockchain/holochain/holome/cc_tuts/dist/cc_tuts.dna.json'
-hash = 'QmStyQrmgytZqmQEuESsuXtonAdPE6wYBEngqUGN6TUgd5'
-id = 'hc-run-dna'
+file = 'dist/cc_tuts.dna.json'
+hash = 'QmUSMYWRcjPiF1xeWsFEAbUdqeVRojExag89nHT47F86uu'
+id = '__cc_tuts'
 
 [[instances]]
 agent = 'hc-run-agent'
-dna = 'hc-run-dna'
-id = 'test-instance'
+dna = '__cc_tuts'
+id = '__cc_tuts'
 
 [instances.storage]
 type = 'memory'
 
 [[interfaces]]
-admin = true
-id = 'websocket-interface'
+admin = false
+choose_free_port = false
+id = 'cc_tuts_ui'
 
 [[interfaces.instances]]
-id = 'test-instance'
+alias = 'test-instance'
+id = '__cc_tuts'
 
 [interfaces.driver]
-port = 8888
+port = 50000
 type = 'websocket'
+
+[[ui_bundles]]
+id = 'cc_tuts_ui'
+root_dir = '../gui'
+
+[[ui_interfaces]]
+bind_address = '127.0.0.1'
+bundle = 'cc_tuts_ui'
+dna_interface = 'cc_tuts_ui'
+id = 'cc_tuts_ui'
+port = 8888
+reroute_to_root = false
 
 [logger]
 state_dump = true

@@ -1,65 +1,57 @@
 #![feature(proc_macro_hygiene)]
-#[macro_use]
-extern crate hdk;
-extern crate hdk_proc_macros;
-extern crate serde;
-#[macro_use]
-extern crate serde_derive;
-extern crate serde_json;
-#[macro_use]
-extern crate holochain_json_derive;
-use hdk::{entry_definition::ValidatingEntryType, error::ZomeApiResult};
-
-use hdk::holochain_core_types::{dna::entry_types::Sharing, entry::Entry};
-
-use hdk::holochain_json_api::{error::JsonError, json::JsonString};
-
-use hdk::holochain_persistence_api::cas::content::Address;
-
+use crate::user::{User, UserEntry};
+use hdk::{
+    entry_definition::ValidatingEntryType, error::ZomeApiResult,
+    holochain_persistence_api::cas::content::Address,
+};
 use hdk_proc_macros::zome;
-
-#[derive(Serialize, Deserialize, Debug, DefaultJson, Clone)]
-pub struct Person {
-    name: String,
-}
+use serde_derive::{Deserialize, Serialize};
+pub mod user;
 
 #[zome]
-mod hello_zome {
+mod users {
     #[init]
     fn init() {
         Ok(())
     }
+
     #[validate_agent]
-    pub fn validate_agent(validation_data: EntryValidationData<AgentId>) {
+    pub fn valildate_agent(validation_data: EntryValidationData<AgentId>) {
         Ok(())
     }
 
-    #[zome_fn("hc_public")]
-    fn hello_holo() -> ZomeApiResult<String> {
-        Ok("Merhaba Holo".into())
-    }
     #[entry_def]
-    fn person_entry_def() -> ValidatingEntryType {
-        entry!(
-            name: "person",
-            description: "Person to say hello to",
-            sharing: Sharing::Private,
-            validation_package: || {
-                hdk::ValidationPackageDefinition::Entry
-            },
-            validation: | _validation_data: hdk::EntryValidationData<Person>| {
-                Ok(())
-            }
-        )
+    fn anchor_def() -> ValidatingEntryType {
+        holochain_anchors::anchor_definition()
     }
-    #[zome_fn("hc_public")]
-    pub fn create_person(person: Person) -> ZomeApiResult<Address> {
-        let entry = Entry::App("person".into(), person.into());
-        let address = hdk::commit_entry(&entry)?;
-        Ok(address)
+
+    #[entry_def]
+    fn user_def() -> ValidatingEntryType {
+        user::definition()
     }
+
     #[zome_fn("hc_public")]
-    pub fn retrieve_person(address: Address) -> ZomeApiResult<Person> {
-        hdk::utils::get_as_type(address)
+    fn create_user(user_input: UserEntry) -> ZomeApiResult<User> {
+        user::handlers::create_user(user_input)
+    }
+
+    #[zome_fn("hc_public")]
+    fn get_user(id: Address) -> ZomeApiResult<User> {
+        user::handlers::get_user(id)
+    }
+
+    #[zome_fn("hc_public")]
+    fn update_user(id: Address, user_input: UserEntry) -> ZomeApiResult<User> {
+        user::handlers::update_user(id, user_input)
+    }
+
+    #[zome_fn("hc_public")]
+    fn remove_user(id: Address) -> ZomeApiResult<Address> {
+        user::handlers::remove_user(id)
+    }
+
+    #[zome_fn("hc_public")]
+    fn get_all_user() -> ZomeApiResult<Vec<User>> {
+        user::handlers::get_all_user()
     }
 }
