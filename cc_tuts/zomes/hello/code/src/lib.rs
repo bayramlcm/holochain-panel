@@ -41,8 +41,8 @@ mod users {
     }
 
     #[zome_fn("hc_public")]
-    fn user_update(id: Address, user_input: UserEntry) -> ZomeApiResult<User> {
-        user::handlers::user_update(id, user_input)
+    fn user_update(id: Address, user: UserEntry) -> ZomeApiResult<User> {
+        user::handlers::user_update(id, user)
     }
 
     #[zome_fn("hc_public")]

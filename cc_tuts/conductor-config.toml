@@ -12,7 +12,7 @@ test_agent = true
 
 [[dnas]]
 file = '/Users/bayramlcm/Documents/projects/blockchain/holochain/holome/cc_tuts/dist/cc_tuts.dna.json'
-hash = 'QmbHn7426yfUVMdbSU4Gcf31CHHetRicCByKYQViHnkZtX'
+hash = 'QmdTiyFjgwbEjTHfJQYN4fvk8rEMEqtwsGeh1RMcCW4QM4'
 id = 'hc-run-dna'
 
 [[instances]]
