@@ -12,7 +12,7 @@ test_agent = true
 
 [[dnas]]
 file = '/Users/bayramlcm/Documents/projects/blockchain/holochain/holome/cc_tuts/dist/cc_tuts.dna.json'
-hash = 'QmdTiyFjgwbEjTHfJQYN4fvk8rEMEqtwsGeh1RMcCW4QM4'
+hash = 'Qme3WUbikQGYpbFq1xYhATmTwXGtV7reba3aWQ4TxryHWE'
 id = 'hc-run-dna'
 
 [[instances]]
@@ -21,7 +21,8 @@ dna = 'hc-run-dna'
 id = 'test-instance'
 
 [instances.storage]
-type = 'memory'
+path = '/Users/bayramlcm/holochain/holome/storage'
+type = 'file'
 
 [[interfaces]]
 admin = true
