@@ -30,4 +30,4 @@ $ hc package
 $ hc run
 ```
 
-### [Uygulama Arayüzüne Git](https://github.com/bayramlcm/holo-panel-vue)
+### [Uygulama Arayüzüne Git](https://github.com/bayramlcm/holochain-panel-vue)
