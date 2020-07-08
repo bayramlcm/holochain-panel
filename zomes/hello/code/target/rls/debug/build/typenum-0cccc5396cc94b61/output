@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/bayramlcm/Documents/projects/blockchain/holochain/holome/cc_tuts/zomes/hello/code/target/rls/debug/build/typenum-0cccc5396cc94b61/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/Users/bayramlcm/Documents/projects/blockchain/holochain/holome/cc_tuts/zomes/hello/code/target/rls/debug/build/typenum-0cccc5396cc94b61/out/op.rs
